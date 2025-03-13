@@ -37,7 +37,7 @@ public class NFAState extends State {
      * @param symbol is the symbol to transition to toState
      * @return the next states from the symbol (empty set if non existent)
      */
-    public Set<NFAState> getNextStates(char symbol) {
+    public Set<NFAState> toStates(char symbol) {
         return transitions.getOrDefault(symbol, Collections.emptySet());
     }
 }

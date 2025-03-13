@@ -1,6 +1,5 @@
 package fa.nfa;
 
-import fa.State;
 import java.util.*;
 
 /**
@@ -28,6 +27,7 @@ public class NFA implements NFAInterface {
      */
     public NFA() {
         sigma = new LinkedHashSet<>();
+        sigma.add('e'); // Add epsilon transition symbol by default
         states = new LinkedHashMap<>();
         startState = null;
         finalStates = new LinkedHashSet<>();
@@ -95,7 +95,7 @@ public class NFA implements NFAInterface {
      * @return The state object, or null if it does not exist.
      */
     @Override
-    public State getState(String name) {
+    public NFAState getState(String name) {
         return states.get(name);
     }
 
@@ -146,7 +146,7 @@ public class NFA implements NFAInterface {
      */
     @Override
     public Set<NFAState> getToState(NFAState from, char onSymb) {
-        return from.getNextStates(onSymb);
+        return from.toStates(onSymb);
     }
 
     /**
@@ -162,7 +162,7 @@ public class NFA implements NFAInterface {
         while (!stack.isEmpty()) {
             NFAState state = stack.pop();
             if (closure.add(state)) {
-                stack.addAll(state.getNextStates('e'));
+                stack.addAll(state.toStates('e'));
             }
         }
         return closure;
@@ -179,7 +179,7 @@ public class NFA implements NFAInterface {
         for (char c : s.toCharArray()) {
             Set<NFAState> nextStates = new HashSet<>();
             for (NFAState state : currentStates) {
-                for (NFAState nextState : state.getNextStates(c)) {
+                for (NFAState nextState : state.toStates(c)) {
                     nextStates.addAll(eClosure(nextState));
                 }
             }
@@ -203,7 +203,7 @@ public class NFA implements NFAInterface {
         for (char c : s.toCharArray()) {
             Set<NFAState> nextStates = new HashSet<>();
             for (NFAState state : currentStates) {
-                for (NFAState nextState : state.getNextStates(c)) {
+                for (NFAState nextState : state.toStates(c)) {
                     nextStates.addAll(eClosure(nextState));
                 }
             }
