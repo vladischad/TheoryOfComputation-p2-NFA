@@ -40,4 +40,5 @@ public class NFAState extends State {
     public Set<NFAState> toStates(char symbol) {
         return transitions.getOrDefault(symbol, Collections.emptySet());
     }
+
 }

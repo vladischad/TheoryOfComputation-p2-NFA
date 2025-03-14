@@ -14,7 +14,8 @@ public class NFA implements NFAInterface {
 
     @Override
     public boolean isDFA() {
-        return false;
+        // TODO: check if any e-closures
+        // TODO: check if multiple transitions off single symbol
     }
 
     private Set<Character> sigma;   // Alphabet
