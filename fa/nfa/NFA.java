@@ -12,12 +12,6 @@ import java.util.*;
  */
 public class NFA implements NFAInterface {
 
-    @Override
-    public boolean isDFA() {
-        // TODO: check if any e-closures
-        // TODO: check if multiple transitions off single symbol
-    }
-
     private Set<Character> sigma;   // Alphabet
     private Map<String, NFAState> states; // Mapping of state names to state objects
     private NFAState startState; // Start state of the NFA
@@ -212,5 +206,26 @@ public class NFA implements NFAInterface {
             maxCopies = Math.max(maxCopies, currentStates.size());
         }
         return maxCopies;
+    }
+
+    /**
+     * Determines if the NFA is in fact a DFA
+     * @return true or false depending on if NFA is DFA
+     */
+    @Override
+    public boolean isDFA() {
+        for (NFAState state : states.values()) {
+            if (!state.toStates('e').isEmpty()) {
+                return false;
+            }
+        }
+        for (NFAState state : states.values()) {
+            for (char symbol : sigma) {
+                if (state.toStates(symbol).size() > 1) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
