@@ -28,7 +28,7 @@ This project implements a **Nondeterministic Finite Automaton (NFA)** in Java, s
 
 ## Reflection
 
-Working on this project was a great learning experience. Implementing an NFA helped us understand how nondeterministic automata work and how they differ from DFAs. The most challenging part was handling epsilon transitions correctly and ensuring that the eClosure() function was efficient. Debugging these issues took some time, but it really helped us get a better grasp of graph traversal algorithms like Depth-First Search (DFS) and Breadth-First Search (BFS).
+Working on this project was a great learning experience. Implementing an NFA helped us understand how nondeterministic automata work and how they differ from DFAs. The most challenging part was handling epsilon transitions correctly and ensuring that the eClosure() function was efficient. Debugging these issues took some time, but it really helped us get a better grasp of graph traversal algorithms like Depth-First Search (DFS) and Breadth-First Search (BFS).  Another issue we ran into was an error when it came to epsilon transitions because we weren't including epsilon in our alphabet by default.  Testing if the NFA was infact a DFA was easy as well, just checking if any epsilon transitions and and multiple transitions off the same symbol wasn't too difficult.
 
 Overall, this project gave us valuable experience with finite automata, state transitions, and Java collections. It reinforced key concepts from class while also improving our problem-solving and debugging skills. Though it was challenging at times, it was satisfying to see everything come together in the end.
 
